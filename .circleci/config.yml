@@ -25,4 +25,4 @@ jobs:
             - ~/.cache
       - run: $(npm bin)/cypress run
       - store_test_results:
-          path: test-results
+          path: ~/.circleci/test-results
