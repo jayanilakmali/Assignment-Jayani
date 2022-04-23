@@ -29,11 +29,16 @@ describe('Comments', () => {
                 cy
                     .request({method: 'GET', url: '/comments', qs: {postId: post.id}})
                     .then(({body, status}) => {
-                        const firstComment = body[0] || {};
-                        const isValidatedEmail = validateEmail(firstComment.email)
-                        cy.log(firstComment.email)
                         expect(status).to.eq(200);
-                        expect(isValidatedEmail).to.be.true
+
+                        body.forEach(comments => {
+                                const isValidatedEmail = validateEmail(comments.email)
+                                if(isValidatedEmail)
+                                    cy.log(comments.email + " is a valid email" );
+                                else
+                                    cy.log(comments.email + " is an invalid email" );
+
+                        })
                         
                     });
             });
@@ -42,7 +47,8 @@ describe('Comments', () => {
         cy
             .request({method: 'GET', url: '/posts?userId=9'})
             .then(({body}) => {
-                testComments(body);
+                //cy.log(body)
+               testComments(body);
             });
     });
 });
