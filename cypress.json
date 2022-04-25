@@ -2,10 +2,12 @@
 
     "baseUrl": "https://jsonplaceholder.typicode.com",
     "reporter": "cypress-mochawesome-reporter",
+    "screenshotOnRunFailure": true,
     "reporterOptions": {
         "reportDir": "cypress/report",
         "charts": true,
-        "reportPageTitle": "Automation Reports"
+        "reportPageTitle": "automation-reports",
+        "embeddedScreenshots": true
       },
       "projectId": "h1tjpf"
 
